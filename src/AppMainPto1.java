@@ -1,5 +1,5 @@
 
-public class AppMain {
+public class AppMainPto1 {
 
 	public static void main(String[] args) {
 		
