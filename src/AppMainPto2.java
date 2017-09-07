@@ -1,8 +1,11 @@
 import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class AppMainPto2 {
 
@@ -33,10 +36,20 @@ public class AppMainPto2 {
 		secuencia++;
 		empleados.put(secuencia, empleado5);
 		
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
 		Nomina nomina = new Nomina(1, LocalDate.now());
 		nomina.setEmpleados(empleados);
+		Double totalNomina = nomina.CalcularNomina();
+		Iterator<HashMap.Entry<Integer, Empleado>> entries = empleados.entrySet().iterator();
+		while (entries.hasNext()) 
+		{
+			 HashMap.Entry<Integer, Empleado> empl = entries.next();
+			 
+			 System.out.println("Empleado: " + empl.getValue().getNombre() + " Salario: " + empl.getValue().getCargo().getSalario());
+		}
+		
+		NumberFormat formatter = new DecimalFormat("#0.00"); 
+		System.out.println("");
+		System.out.println("Total a pagar: " + formatter.format(totalNomina));
 	}
 
 }

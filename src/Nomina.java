@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Nomina {
 	
@@ -26,9 +27,18 @@ public class Nomina {
 		this.empleados = empleados;
 	}
 	
-	public void CalcularNomina()
+	public double CalcularNomina()
 	{
-		
+		Double total = 0.0;
+		Iterator<HashMap.Entry<Integer, Empleado>> entries = this.empleados.entrySet().iterator();
+		while (entries.hasNext()) 
+		{
+			 HashMap.Entry<Integer, Empleado> empl = entries.next();
+			 
+			 //System.out.println("Empleado: " + empl.getValue().getNombre() + " Salario: " + empl.getValue().getCargo().getSalario());
+			 total = total + empl.getValue().getCargo().getSalario();
+		}
+		return total;
 	}
 	
 	
